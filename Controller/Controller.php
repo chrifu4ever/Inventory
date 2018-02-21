@@ -17,7 +17,7 @@ class Controller
 
         $databaseElement = $database->showProduct($result);
 
-        //String mit mehreren Zeilen
+        //Creates the Head of the Table
         $tableHead = "
         <table id='resultTable'>
         <tr>
@@ -28,15 +28,21 @@ class Controller
         ";
 
         $tableRows="";
+
+        //Creates the Table Rows as long as there are DB Entries
+
+
         while($row=$databaseElement->fetch_object())
         {
             $tableRows.="<tr>
             <td>$row->produktName</td>
             <td>$row->zimmerName</td>
             <td>$row->schrankName</td></tr>
-            </table>";
+            ";
         }
-        return $tableHead.$tableRows;
+
+        $tableEnd="</table>";
+        return $tableHead.$tableRows.$tableEnd;
 
     }
 
