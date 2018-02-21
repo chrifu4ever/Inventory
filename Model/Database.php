@@ -22,28 +22,14 @@ class Database
         $conn = new ConnectDB();
         if ($object != "")
         {
+            $query = "SELECT zimmerName FROM Zimmer WHERE zimmerID=1";
+            //$query = "SELECT zimmerName FROM Zimmer WHERE zimmerID=1"; //Test
+            $result = $conn->connect()->query($query);
+            return $result;
 
-
-            $hans = "SELECT zimmerName FROM Zimmer WHERE zimmerID=1"; //Test
-            $result = $conn->connect()->query($hans);
-
-
-            $string = "
-                <table id='resultTable'><tr id='captionTable'><th>Was:</th><th>Wo:</th> ";
-            while ($zeile = $result->fetch_object())
-            {
-                // echo $zeile->Artikelname,"<br>";
-                echo "<tr><td>" . $zeile->zimmerName . "</td></tr>
-
-
-            ";
-
-                return $string;
-            }
         }
         else
         {
-
             return "Keine Eingabe vorhanden";
         }
 

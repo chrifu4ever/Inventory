@@ -12,11 +12,28 @@ class Controller {
 
     function createTable($result)
     {
-
-
         $database = new Database();
 
-        return $database->showProduct($result);
+        $hans = $database->showProduct($result);
+
+
+        $string2="<table id='resultTable'>
+<tr>
+<th>Produkt</th>
+<th>Schrank</th>
+<th>Zimmer</th>
+</tr>";
+        //TODO: Tabelle ausgeben anhand der Eingabe
+
+        $string = "<table id='resultTable'><tr id='captionTable'><th>Was:</th><th>Wo:</th> ";
+        while ($zeile = $hans->fetch_object())
+        {
+            // echo $zeile->Artikelname,"<br>";
+
+
+
+            ";
+        }
 
 
 
