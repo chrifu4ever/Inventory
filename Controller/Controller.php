@@ -5,26 +5,20 @@
  * Date: 20.02.2018
  * Time: 15:24
  */
-class controller {
+class Controller {
 
     function createTable($result)
     {
-        require "../Model/Database.php";
+        require(__DIR__.'/../Model/Database.php');
 
         $database = new Database();
 
         $database->showProduct($result);
-        echo "
-   
-    <table class='table table-striped table-bordered'><th>Produkt:</th><th>Im Schrank:</th><th>Zimmer</th> ";
-        while ($zeile = $result->fetch_object()) {
-            // echo $zeile->Artikelname,"<br>";
-            echo "
-                <tr>
-                    <td>" . $zeile->Artikelname . "</td><td>".$zeile->Schrankname. "<td>" . $zeile->Zimmername."</td>";
-        }
 
-        echo "</table></form>";
+
+        echo $result->zimmerName;
+
+
     }
 
 }

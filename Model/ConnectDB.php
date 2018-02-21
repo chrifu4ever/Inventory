@@ -8,7 +8,7 @@
 
 class ConnectDB
 {
-    public function __construct()
+    public function connect()
     {
         mysqli_connect("127.0.0.1", "linux", "L5xChriRo", "inventory");
         if (mysqli_connect_error())
