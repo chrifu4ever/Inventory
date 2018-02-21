@@ -1,5 +1,7 @@
 <html>
-<head><title>Inventory</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title></head>
 <body>
 <form method="get">
     <h1>Was suchst du?</h1>
@@ -12,7 +14,7 @@
 </html>
 
 <?php
-require "Model/ConnectDB.php";
+
 require "Controller/Controller.php";
 
 /**
@@ -27,6 +29,7 @@ $contoller = new Controller();
 if (isset($_GET["searchTf"]))
 {
     $contoller->createTable($_GET["searchTf"]);
+    echo "<br>Küche";
 }
 
 

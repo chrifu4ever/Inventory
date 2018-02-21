@@ -6,29 +6,44 @@
  * Time: 12:37
  */
 
+require 'ConnectDB.php';
+
+
 class Database
 {
     private $query;
 
 
-
-
-
-
-
     function showProduct($object)
     {
 
-        require "ConnectDB.php";
+
+        //require "ConnectDB.php";
         $conn = new ConnectDB();
-        if ($object!="")
+        if ($object != "")
         {
-            $hans = "SELECT * FROM Zimmer"; //Test
-            $result=$conn->connect()->$hans;
-            return $result;
+
+
+            $hans = "SELECT zimmerName FROM Zimmer WHERE zimmerID=1"; //Test
+            $result = $conn->connect()->query($hans);
+
+
+            $string = "
+                <table id='resultTable'><tr id='captionTable'><th>Was:</th><th>Wo:</th> ";
+            while ($zeile = $result->fetch_object())
+            {
+                // echo $zeile->Artikelname,"<br>";
+                echo "<tr><td>" . $zeile->zimmerName . "</td></tr>
+
+
+            ";
+
+                return $string;
+            }
         }
         else
         {
+
             return "Keine Eingabe vorhanden";
         }
 
@@ -37,7 +52,7 @@ class Database
 
     function createNewProduct($object, $table, $schrank, $kategorie)
     {
-        $this->query="INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";
+        $this->query = "INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";
     }
 
 }
