@@ -28,8 +28,8 @@ $contoller = new Controller();
 
 if (isset($_GET["searchTf"]))
 {
-    $contoller->createTable($_GET["searchTf"]);
-    echo "<br>Küche";
+    echo $contoller->createTable($_GET["searchTf"]);
+
 }
 
 
