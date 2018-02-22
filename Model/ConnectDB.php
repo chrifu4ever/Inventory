@@ -8,16 +8,16 @@
 
 class ConnectDB
 {
-    public function __construct()
+    public function connect()
     {
-        mysqli_connect("127.0.0.1", "linux", "L5xChriRo", "inventory");
-        if (mysqli_connect_error())
-        {
-            echo "Keine Verbindung vorhanden";
+
+        $sql = new mysqli("127.0.0.1", "linux", "L5xChriRo", "inventory");
+        mysqli_set_charset($sql,"utf8");
+        if ($sql->connect_errno) {
+            echo "Failed to connect to MySQL: (" . $sql->connect_errno . ") " . $sql->connect_error;
         } else
-        {
-            echo "Verbindung erfolgreich aufgebaut";
-        }
+
+       return $sql;
     }
 }
 

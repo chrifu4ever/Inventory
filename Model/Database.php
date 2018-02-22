@@ -6,27 +6,48 @@
  * Time: 12:37
  */
 
+require 'ConnectDB.php';
+
+
 class Database
 {
     private $query;
 
 
+    function showProduct($object)
+    {
+
+
+        //require "ConnectDB.php";
+        $conn = new ConnectDB();
+
+
+        if ($object != "")
+        {
+            $query = "SELECT Produkt.produktName,  Zimmer.zimmerName, Schraenke.schrankName FROM Produkt
+                      JOIN Schraenke ON Produkt.schrankID=Schraenke.schrankID
+                      JOIN Zimmer ON Schraenke.zimmerID=Zimmer.zimmerID
+                      WHERE Produkt.produktName LIKE '%$object%' OR Schraenke.schrankName LIKE '%$object%' OR Zimmer.zimmerName LIKE '%$object%'";
+
+
+            $result = $conn->connect()->query($query);
+            return $result;
+
+        }
+        else
+        {
+            echo "Bitte geben Sie etwas ins Suchfeld ein";
+
+        }
+
+    }
+
+
+
 
     function createNewProduct($object, $table, $schrank, $kategorie)
     {
-        $this->query="INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";
+        $this->query = "INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";
     }
-
-    function showProduct($object)
-    {
-        $result = "";
-       $this->query = "SELECT * FROM Produkt WHERE produktName LIKE %$object%";
-        //$showQuery = "SELECT Artikel.Artikelname, Schraenke.Schrankname, Zimmer.Zimmername FROM Artikel LEFT JOIN Schraenke on Schraenke.schrankID=Artikel.schrankID LEFT JOIN Zimmer on Zimmer.zimmerID=Schraenke.zimmerID where Artikel.Artikelname LIKE '%".$product."%'";
-
-
-        $result=connectDB()->query;
-        return $result;
-    }
-
 
 }
