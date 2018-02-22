@@ -43,6 +43,8 @@ class Database
     }
 
 
+
+
     function createNewProduct($object, $table, $schrank, $kategorie)
     {
         $this->query = "INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";

@@ -13,12 +13,19 @@ class Controller
 
     function createTable($result)
     {
-        $database = new Database();
 
-        $databaseElement = $database->showProduct($result);
+        if ($result==null)
+        {
+            return "Bitte geben Sie etwas in das Suchfeld ein!";
+        }
+        else
+        {
+            $database = new Database();
 
-        //Creates the Head of the Table
-        $tableHead = "
+            $databaseElement = $database->showProduct($result);
+            $countRows=0;
+            //Creates the Head of the Table
+            $tableHead = "
         <table id='resultTable'>
         <tr>
             <th>Produkt</th>
@@ -27,22 +34,33 @@ class Controller
         </tr>
         ";
 
-        $tableRows="";
+            $tableRows="";
 
-        //Creates the Table Rows as long as there are DB Entries
+            //Creates the Table Rows as long as there are DB Entries
 
 
-        while($row=$databaseElement->fetch_object())
-        {
-            $tableRows.="<tr>
-            <td>$row->produktName</td>
-            <td>$row->zimmerName</td>
-            <td>$row->schrankName</td></tr>
-            ";
+            while($row=$databaseElement->fetch_object())
+            {
+                $countRows++;
+                $tableRows.="<tr>
+                <td>$row->produktName</td>
+                <td>$row->zimmerName</td>
+                <td>$row->schrankName</td></tr>
+                ";
+            }
+
+            if ($countRows<1)
+            {
+                return "Es wurden keine mit deiner Suchanfrage - ".$result." - übereinstimmenden Dokumente gefunden.";
+            }
+            else
+            {
+                $tableEnd="</table>";
+                return "Es wurden ".$countRows." Einträge gefunden<br>".$tableHead.$tableRows.$tableEnd;
+            }
+
         }
 
-        $tableEnd="</table>";
-        return $tableHead.$tableRows.$tableEnd;
 
     }
 
