@@ -1,18 +1,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Inventory</title></head>
-<link rel="stylesheet" href="View/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="View/css/style.css">
+</head>
 <body>
-<form method="get">
+<div class="header">
     <h1>Was suchst du?</h1>
-    <input type="text" name="searchTf" id="searchTf" placeholder="Hier etwas eingeben" autofocus autocomplete="off">
-    <input type="submit" name="searchBut" id="searchBut" value="Suchen">
-</form>
+</div>
+<div class="col-3 menu">
+        <form method="get">
 
 
-</body>
-</html>
+            <input type="text" name="searchTf" id="searchTf" placeholder="Hier etwas eingeben" autofocus
+                   autocomplete="off">
+            <input type="submit" name="searchBut" id="searchBut" value="Suchen">
+        </form>
+</div>
+
+
+
 
 <?php
 
@@ -29,8 +37,10 @@ $contoller = new Controller();
 
 if (isset($_GET["searchTf"]))
 {
-    echo $contoller->createTable($_GET["searchTf"]);
+    echo "<div class='main col-9'>".$contoller->createTable($_GET["searchTf"])."</div>";  //The generated table
 }
 
 
 ?>
+</body>
+</html>
