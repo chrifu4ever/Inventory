@@ -1,14 +1,5 @@
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
-    <link rel="stylesheet" href="View/css/style.css">
-</head>
-<body>
-<div class="headker">
-    <h1>Was suchst du?</h1>
-</div>
+<?php include("View/templates/menu.php"); ?>
 <div class="col-3 menu">
         <form method="get">
 
