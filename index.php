@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="View/css/style.css">
 </head>
 <body>
-<div class="header">
+<div class="headker">
     <h1>Was suchst du?</h1>
 </div>
 <div class="col-3 menu">
@@ -38,6 +38,7 @@ $contoller = new Controller();
 if (isset($_GET["searchTf"]))
 {
     echo "<div class='main col-9'>".$contoller->createTable($_GET["searchTf"])."</div>";  //The generated table
+    //$contoller->readTextFile();
 }
 
 

@@ -47,7 +47,12 @@ class Database
 
     function createNewProduct($object, $table, $schrank, $kategorie)
     {
-        $this->query = "INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ($object,$schrank,$kategorie); ";
+        $conn = new ConnectDB();
+
+        $query= "INSERT INTO Produkt(produktName, schrankID, kategorieID) VALUES ('$object',$schrank,$kategorie); ";
+        $conn->connect()->query($query);
+        echo $query;
     }
+
 
 }
