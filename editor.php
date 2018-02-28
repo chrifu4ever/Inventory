@@ -9,6 +9,7 @@
 
 
     <textarea inputmode=""></textarea>
+
     <input type="submit" name="searchBut" id="searchBut" value="Suchen">
 </form>
 </div>

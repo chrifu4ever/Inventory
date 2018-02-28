@@ -1,5 +1,9 @@
 <html>
-<?php include("View/templates/menu.php"); ?>
+<?php
+include("View/TemplateLoader.php");
+$loader = new TemplateLoader();
+echo $loader->loadHeader();
+?>
 <div class="col-3 menu">
         <form method="get">
 
