@@ -13,31 +13,14 @@ class Database
 {
 
 
-
     function showProduct($object)
     {
-
-
-        //require "ConnectDB.php";
-        $conn = new ConnectDB();
-        $result="";
-
         if ($object != "")
         {
-            /*
-            $query = "SELECT Produkt.produktName,  Zimmer.zimmerName, Schraenke.schrankName FROM Produkt
-                      JOIN Schraenke ON Produkt.schrankID=Schraenke.schrankID
-                      JOIN Zimmer ON Schraenke.zimmerID=Zimmer.zimmerID
-                      WHERE Produkt.produktName LIKE '%$object%' OR Schraenke.schrankName LIKE '%$object%' OR Zimmer.zimmerName LIKE '%$object%'";
-
-            */
-
-            $query = "SELECT Product.productName,  Rooms.roomName, Cupboard.cupboardName FROM Product
+            return $this->getSQLOrder("SELECT Product.productName,  Rooms.roomName, Cupboard.cupboardName FROM Product
                       JOIN Cupboard ON Product.cupboardID=Cupboard.cupboardID
                       JOIN Rooms ON Cupboard.roomID=Rooms.roomID
-                      WHERE Product.productName LIKE '%$object%' OR Cupboard.cupboardName LIKE '%$object%' OR Rooms.roomName LIKE '%$object%'";
-
-            $result = $conn->connect()->query($query);
+                      WHERE Product.productName LIKE '%$object%' OR Cupboard.cupboardName LIKE '%$object%' OR Rooms.roomName LIKE '%$object%'");
 
 
         }
@@ -46,20 +29,28 @@ class Database
             echo "Bitte geben Sie etwas ins Suchfeld ein";
 
         }
-        return $result;
+
 
     }
 
 
-
-
     function createNewProduct($object, $schrank, $kategorie)
     {
-        $conn = new ConnectDB();
+        return $this->getSQLOrder("INSERT INTO Product(productName, cupboardID, categoryID) VALUES ('$object',$schrank,$kategorie)");
+        //echo $query;
+    }
 
-        $query= "INSERT INTO Product(productName, cupboardID, categoryID) VALUES ('$object',$schrank,$kategorie); ";
-        $conn->connect()->query($query);
-        echo $query;
+    function allElementsInArray() //TODO Hier weiter: Wenn das Zimmer ausgewählt wird sollen danach alle Schränke zur Auswahl stehen um neue Produkte hinzuzufügen
+    {
+        return $this->getSQLOrder("SELECT cupboardName FROM Cupboard");
+    }
+
+
+    function getSQLOrder($query)
+    {
+        $conn = new ConnectDB();
+        $result = $conn->connect()->query($query);
+        return $result;
     }
 
 

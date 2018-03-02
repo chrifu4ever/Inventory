@@ -6,22 +6,22 @@
 <?php include("View/templates/menu.php"); ?>
 <div class="col-3 menu">
 <form method="get">
-
-
-    <textarea inputmode=""></textarea>
-
-    <input type="submit" name="searchBut" id="searchBut" value="Suchen">
+    <form>
+        <input type="text" name="newProductText" id="newProductText" autofocus autocomplete="off" placeholder="Ihr neues Produkt">
+        <label for="selectCupboard">Schrank:</label>
+        <select id="selectCupboard" name="selectCupboard">
+            <?php
+            include("Controller/Controller.php");
+            $option = new Controller();
+            $option->showElementInOption(1);
+            ?>
+        </select>
+        <select>
+            <?php $option->showElementInOption(2)?>
+        </select>
+    </form>
 </form>
 </div>
 </body>
 </html>
 
-
-<?php
-/**
- * Created by PhpStorm.
- * User: chrif
- * Date: 23.02.2018
- * Time: 20:42
- */
-?>

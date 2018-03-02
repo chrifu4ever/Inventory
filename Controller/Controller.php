@@ -19,9 +19,9 @@ class Controller
             return "Bitte geben Sie etwas in das Suchfeld ein!";
         } else
         {
-            $database = new Database();
+            //$database = new Database();
 
-            $databaseElement = $database->showProduct($result);
+            $databaseElement = $this->init()->showProduct($result);
             $countRows = 0;
             //Creates the Head of the Table
             $tableHead = "
@@ -66,14 +66,14 @@ class Controller
 
     function readTextFile()
     {
-        $database = new Database();
+
         $array = [];
         $zitate = file("Controller/entry.txt");
         for ($i = 0; $i < count($zitate); $i++)
         {
 
             $array[$i]= $zitate[$i];
-            $database->createNewProduct($array[$i],"Produkt",3,1);
+            $this->init()->createNewProduct($array[$i],"Produkt",3,1);
         }
 
         var_dump($array);
@@ -81,6 +81,55 @@ class Controller
 
 
 
+    }
+
+
+    function showElementInOption($hans)
+    {
+
+        $databaseElement = $this->init()->allElementsInArray();
+
+        switch ($hans) {
+            case 1:
+                while ($row = $databaseElement->fetch_object())
+                {
+                    echo "<option value='$row->cupboardName'>$row->cupboardName</option>";
+                }
+                break;
+            case 2:
+                while ($row = $databaseElement->fetch_object())
+                {
+                    echo "<option value='$row->roomName'>$row->roomName</option>";
+                }
+                break;
+        }
+
+
+        if($hans==1)
+        {
+
+        }
+
+
+    }
+
+    function showRoomsAsOption()
+    {
+
+        $databaseElement = $this->init()->allElementsInArray();
+
+
+        while ($row = $databaseElement->fetch_object())
+        {
+            echo "<option value='$row->cupboardName'>$row->cupboardName</option>";
+        }
+
+    }
+
+    function init()
+    {
+        $database = new Database();
+        return $database;
     }
 
 
