@@ -34,9 +34,11 @@ class Database
     }
 
 
-    function createNewProduct($object, $schrank, $kategorie)
+    function createNewProduct($object, $schrank)
     {
         return $this->getSQLOrder("INSERT INTO Product(productName, cupboardID, categoryID) VALUES ('$object',$schrank,$kategorie)");
+
+
         //echo $query;
     }
 
@@ -45,13 +47,12 @@ class Database
         switch ($a)
         {
             case 1:
-                return $this->getSQLOrder("SELECT cupboardName FROM Cupboard");
+                return $this->getSQLOrder("SELECT cupboardID, cupboardName FROM Cupboard");
                 break;
             case 2:
-                return $this->getSQLOrder("SELECT roomName FROM Rooms");
+                return $this->getSQLOrder("SELECT roomID, roomName FROM Rooms");
                 break;
         }
-
     }
 
 

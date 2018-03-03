@@ -27,9 +27,9 @@ class Controller
             $tableHead = "
         <table id='resultTable'>
         <tr>
-            <th>Produkt</th>
-            <th>Schrank</th>
             <th>Zimmer</th>
+            <th>Schrank</th>
+            <th>Produkt</th>
         </tr>
         ";
 
@@ -42,9 +42,9 @@ class Controller
             {
                 $countRows++;
                 $tableRows .= "<tr>
-                <td>$row->produktName</td>
-                <td>$row->zimmerName</td>
-                <td>$row->schrankName</td></tr>
+                <td>$row->roomName</td>
+                <td>$row->cupboardName</td>
+                <td>$row->productName</td></tr>
                 ";
             }
 
@@ -63,6 +63,21 @@ class Controller
     }
 
 
+    function insertProductInDB($product, $cupboard)
+    {
+        if ($product == null)
+        {
+            return "Bitte geben Sie etwas in das Suchfeld ein!";
+        }
+        else
+        {
+            $this->init()->createNewProduct($product,$cupboard);
+            return "Das Produkt $product wurde erfolgreich in den Schrank $cupboard hinzugefügt";
+        }
+
+    }
+
+
 
     function readTextFile()
     {
@@ -74,12 +89,10 @@ class Controller
         {
 
             $array[$i]= $zitate[$i];
-            $this->init()->createNewProduct($array[$i],1,3);
+            $this->init()->createNewProduct($array[$i],3,3);
         }
 
-        var_dump($array);
-
-
+        return "Alle Daten eingetragen";
 
 
     }
@@ -94,13 +107,13 @@ class Controller
             case 1:
                 while ($row = $databaseElement->fetch_object())
                 {
-                    echo "<option value='$row->cupboardName'>$row->cupboardName</option>";
+                    echo "<option value='cupboard_$row->cupboardID'>$row->cupboardName</option>";
                 }
                 break;
             case 2:
                 while ($row = $databaseElement->fetch_object())
                 {
-                    echo "<option value='$row->roomName'>$row->roomName</option>";
+                    echo "<option value='room_$row->roomID'>$row->roomName</option>";
                 }
                 break;
         }
@@ -110,18 +123,7 @@ class Controller
 
     }
 
-    function showRoomsAsOption()
-    {
 
-        $databaseElement = $this->init()->allElementsInArray();
-
-
-        while ($row = $databaseElement->fetch_object())
-        {
-            echo "<option value='$row->cupboardName'>$row->cupboardName</option>";
-        }
-
-    }
 
     function init()
     {

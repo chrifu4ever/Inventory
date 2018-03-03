@@ -12,12 +12,7 @@ class TemplateLoader
 
     function loadHeader()
     {
-        include("templates/header.cfu");  //TODO: Later: Possibility to include Directory templates
-
-
-
-        return file_get_contents('header.cfu');
-
+        return file_get_contents('View/templates/header.cfu');
     }
 
 }
