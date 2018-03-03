@@ -65,13 +65,14 @@ class Controller
 
     function insertProductInDB($product, $cupboard)
     {
+
         if ($product == null)
         {
             return "Bitte geben Sie etwas in das Suchfeld ein!";
         }
         else
         {
-            $this->init()->createNewProduct($product,$cupboard);
+            $this->init()->createNewProduct($product,substr($cupboard,-1);
             return "Das Produkt $product wurde erfolgreich in den Schrank $cupboard hinzugefügt";
         }
 

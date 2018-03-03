@@ -34,12 +34,12 @@ class Database
     }
 
 
-    function createNewProduct($object, $schrank)
+    function createNewProduct($object, $cupboard)
     {
-        return $this->getSQLOrder("INSERT INTO Product(productName, cupboardID, categoryID) VALUES ('$object',$schrank,$kategorie)");
+        return $this->getSQLOrder("INSERT INTO Product(productName, cupboardID) VALUES ('$object',$cupboard)");
 
 
-        //echo $query;
+
     }
 
     function allElementsInArray($a) //TODO Hier weiter: Wenn das Zimmer ausgewählt wird sollen danach alle Schränke zur Auswahl stehen um neue Produkte hinzuzufügen
