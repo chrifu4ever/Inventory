@@ -1,4 +1,9 @@
 <html>
+<?php
+include("View/TemplateLoader.php");
+$loader = new TemplateLoader();
+echo $loader->loadHeader();
+?>
 <head>
     <title>Editor</title>
 </head>
