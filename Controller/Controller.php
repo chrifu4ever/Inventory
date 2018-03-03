@@ -66,6 +66,7 @@ class Controller
 
     function readTextFile()
     {
+        echo "OK";
 
         $array = [];
         $zitate = file("Controller/entry.txt");
@@ -73,7 +74,7 @@ class Controller
         {
 
             $array[$i]= $zitate[$i];
-            $this->init()->createNewProduct($array[$i],"Produkt",3,1);
+            $this->init()->createNewProduct($array[$i],1,3);
         }
 
         var_dump($array);
@@ -87,7 +88,7 @@ class Controller
     function showElementInOption($hans)
     {
 
-        $databaseElement = $this->init()->allElementsInArray();
+        $databaseElement = $this->init()->allElementsInArray($hans);
 
         switch ($hans) {
             case 1:
@@ -105,10 +106,6 @@ class Controller
         }
 
 
-        if($hans==1)
-        {
-
-        }
 
 
     }

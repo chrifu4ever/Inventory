@@ -40,9 +40,18 @@ class Database
         //echo $query;
     }
 
-    function allElementsInArray() //TODO Hier weiter: Wenn das Zimmer ausgewählt wird sollen danach alle Schränke zur Auswahl stehen um neue Produkte hinzuzufügen
+    function allElementsInArray($a) //TODO Hier weiter: Wenn das Zimmer ausgewählt wird sollen danach alle Schränke zur Auswahl stehen um neue Produkte hinzuzufügen
     {
-        return $this->getSQLOrder("SELECT cupboardName FROM Cupboard");
+        switch ($a)
+        {
+            case 1:
+                return $this->getSQLOrder("SELECT cupboardName FROM Cupboard");
+                break;
+            case 2:
+                return $this->getSQLOrder("SELECT roomName FROM Rooms");
+                break;
+        }
+
     }
 
 
