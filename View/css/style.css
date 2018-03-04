@@ -24,6 +24,7 @@ body
 }
 th, td {
     border-bottom: 1px solid #ddd;
+    width: 100%;
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
@@ -53,6 +54,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         background-color: lightblue;
     }
 }
+
+
+
+
+#newProductText
+{
+    margin: 0px; width: 98%; height: 224px;
+}
+
 
 /*TODO Optik der Seite allgemein und besonders der Tabelle anpassen - Menüleiste machen und anpassen
  */

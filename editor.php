@@ -17,8 +17,8 @@ echo $loader->loadHeader();
 <div class="col-3 menu">
 <form method="get">
 
-        <label for="newProductText">Produkt: </label>
-        <input type="text" name="newProductText" id="newProductText" autofocus autocomplete="off" placeholder="Ihr neues Produkt">
+        <label for="newProductText">Bitte das neue Produkt eingeben: </label>
+    <textarea name="newProductText" id="newProductText" autofocus autocomplete="off" placeholder="Ein Produkt pro Zeile" ></textarea>
         <br>
         <label for="selectRoom">Zimmer: </label>
         <select id="selectRoom" name="selectRoom">
@@ -37,7 +37,7 @@ echo $loader->loadHeader();
             ?>
         </select>
         <br>
-        <input type="submit" value="Senden" name="submitProduct" id="submitProduct">
+        <input type="submit" value="Produkte in der Datenbank speichern" name="submitProduct" id="submitProduct">
 
 
 </form>
@@ -49,12 +49,18 @@ echo $loader->loadHeader();
 $contoller = new Controller();
 if (isset($_GET["submitProduct"]))
 {
-    $product = $_GET["newProductText"];
     $room =  $_GET["selectRoom"];
     $cupboard = $_GET["selectCupboard"];
 
-    echo $contoller->insertProductInDB($product,$cupboard,$room);
+    $product = $_GET['newProductText'];
 
+    $lines = explode("\n", $product);
+    foreach( $lines as $index => $line )
+    {
+        $lines[$index] = $line;
+        //echo $lines[$index]."<br>";
+        echo $contoller->insertProductInDB($lines[$index],$cupboard);
+    }
 }
 
 

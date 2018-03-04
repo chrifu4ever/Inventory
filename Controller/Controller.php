@@ -30,6 +30,7 @@ class Controller
             <th>Zimmer</th>
             <th>Schrank</th>
             <th>Produkt</th>
+            <th></th>
         </tr>
         ";
 
@@ -44,7 +45,10 @@ class Controller
                 $tableRows .= "<tr>
                 <td>$row->roomName</td>
                 <td>$row->cupboardName</td>
-                <td>$row->productName</td></tr>
+                <td>$row->productName</td>
+                <td><img src='View/pics/delete.png' ></td>
+                <td><img src='View/pics/edit.png'>
+                </tr>
                 ";
             }
 
@@ -72,7 +76,7 @@ class Controller
         }
         else
         {
-            $this->init()->createNewProduct($product,substr($cupboard,-1);
+            $this->init()->createNewProduct($product,substr($cupboard,-1));
             return "Das Produkt $product wurde erfolgreich in den Schrank $cupboard hinzugefügt";
         }
 
