@@ -13,7 +13,7 @@ echo $loader->loadHeader();
     <title>Editor</title>
 </head>
 <body>
-
+<script src="Controller/js/scripts.js"></script>
 <div class="col-3 menu">
 <form method="get">
 

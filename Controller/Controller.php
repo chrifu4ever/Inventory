@@ -7,6 +7,13 @@
  */
 require(__DIR__ . '/../Model/Database.php');
 
+$c = new Controller;
+if (isset($_GET['q']))
+{
+    //echo "Bin da wer noch".$_GET['q'];
+    echo $c->deleteProduct($_GET['q']);
+
+}
 
 class Controller
 {
@@ -36,17 +43,19 @@ class Controller
 
             $tableRows = "";
 
+
+
             //Creates the Table Rows as long as there are DB Entries
-
-
             while ($row = $databaseElement->fetch_object())
             {
+
+
                 $countRows++;
                 $tableRows .= "<tr>
-                <td>$row->roomName</td>
-                <td>$row->cupboardName</td>
-                <td>$row->productName</td>
-                <td><img src='View/pics/delete.png' ></td>
+                <td id='roomID_$row->roomID'>$row->roomName</td>
+                <td id='cupboardID_$row->cupboardID'>$row->cupboardName</td>
+                <td id='productID_$row->productID'>$row->productName</td>
+                <td><img id='$row->productID' src='View/pics/delete.png' onclick='callDeleteProduct(this.id)'></td>
                 <td><img src='View/pics/edit.png'>
                 </tr>
                 ";
@@ -83,6 +92,14 @@ class Controller
     }
 
 
+    function deleteProduct($product) {
+
+        $this->init()->deleteProductInDB($product);
+        return "<br>$product wurde gelöscht ";
+
+    }
+
+
 
     function readTextFile()
     {
@@ -92,7 +109,6 @@ class Controller
         $zitate = file("Controller/entry.txt");
         for ($i = 0; $i < count($zitate); $i++)
         {
-
             $array[$i]= $zitate[$i];
             $this->init()->createNewProduct($array[$i],3,3);
         }
@@ -130,11 +146,19 @@ class Controller
 
 
 
+
     function init()
     {
+
+
         $database = new Database();
         return $database;
     }
 
 
+
+
+
 }
+
+

@@ -17,7 +17,7 @@ class Database
     {
         if ($object != "")
         {
-            return $this->getSQLOrder("SELECT Product.productName,  Rooms.roomName, Cupboard.cupboardName FROM Product
+            return $this->getSQLOrder("SELECT Product.productName, Product.productID, Rooms.roomName,  Rooms.roomID, Cupboard.cupboardName, Cupboard.cupboardID FROM Product
                       JOIN Cupboard ON Product.cupboardID=Cupboard.cupboardID
                       JOIN Rooms ON Cupboard.roomID=Rooms.roomID
                       WHERE Product.productName LIKE '%$object%' OR Cupboard.cupboardName LIKE '%$object%' OR Rooms.roomName LIKE '%$object%'");
@@ -42,6 +42,17 @@ class Database
 
     }
 
+
+    function deleteProductInDB($productID)
+    {
+        //$a = $this->showProduct($product)->fetch_object();
+        echo "DELETE FROM Product WHERE productName = '$productID'";
+
+        return $this->getSQLOrder( "DELETE FROM Product WHERE productID = '$productID'");
+
+
+    }
+
     function allElementsInArray($a) //TODO Hier weiter: Wenn das Zimmer ausgewählt wird sollen danach alle Schränke zur Auswahl stehen um neue Produkte hinzuzufügen
     {
         switch ($a)
@@ -54,6 +65,8 @@ class Database
                 break;
         }
     }
+
+
 
 
     function getSQLOrder($query)
