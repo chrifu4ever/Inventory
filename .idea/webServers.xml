@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a359431e-2320-4c7c-9b25-11ca101adf87" name="Netcup Inventory" url="http://185.170.113.156/Inventory">
+        <fileTransfer host="185.170.113.156" port="22" rootFolder="/var/www/html/Inventory" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

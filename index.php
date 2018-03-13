@@ -6,9 +6,10 @@ $loader = new TemplateLoader();
 echo $loader->loadHeader();
 ?>
 <script src="Controller/js/scripts.js"></script>
+<script src="Controller/js/ajax.js"></script>
 <div class="col-3 menu">
         <form method="get">
-            <input type="text" name="searchTf" id="searchTf" placeholder="Hier etwas eingeben" autofocus
+            <input type="text" name="searchTf" id="searchTf" placeholder="Hier etwas eingeben" onkeypress="callCreateTable(this.value)" autofocus
                    autocomplete="off">
             <input type="submit" name="searchBut" id="searchBut" value="Suchen">
         </form>
@@ -30,28 +31,7 @@ if (isset($_GET["searchTf"]))
 
 
 ?>
-<script>
+<div id="tableDiv"></div>
 
-
-
-    function callDeleteProduct(a)
-    {
-        xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.onreadystatechange = function() {
-          if(xmlhttp.readyState==4 && xmlhttp.status==200)
-          {
-             console.log(xmlhttp.responseText)
-
-          }
-
-
-
-        };
-        xmlhttp.open('GET','Controller/Controller.php?q='+a,true);
-        xmlhttp.send();
-        console.log("test in call");
-    }
-</script>
 </body>
 </html>

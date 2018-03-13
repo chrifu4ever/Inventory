@@ -8,10 +8,18 @@
 require(__DIR__ . '/../Model/Database.php');
 
 $c = new Controller;
+$d = new Controller;
 if (isset($_GET['q']))
 {
     //echo "Bin da wer noch".$_GET['q'];
     echo $c->deleteProduct($_GET['q']);
+
+}
+
+if (isset($_GET['k']))
+{
+    //echo "Bin da wer noch".$_GET['callTable'];
+    echo $d->createTable($_GET['k']);
 
 }
 
@@ -51,7 +59,7 @@ class Controller
 
 
                 $countRows++;
-                $tableRows .= "<tr>
+                $tableRows .= "<tr id='tr_$row->productID'>
                 <td id='roomID_$row->roomID'>$row->roomName</td>
                 <td id='cupboardID_$row->cupboardID'>$row->cupboardName</td>
                 <td id='productID_$row->productID'>$row->productName</td>
@@ -153,6 +161,12 @@ class Controller
 
         $database = new Database();
         return $database;
+    }
+
+    function testFunction($var)
+    {
+        echo "This is a test $var";
+
     }
 
 
