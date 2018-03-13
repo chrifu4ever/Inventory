@@ -9,28 +9,15 @@ echo $loader->loadHeader();
 <script src="Controller/js/ajax.js"></script>
 <div class="col-3 menu">
         <form method="get">
-            <input type="text" name="searchTf" id="searchTf" placeholder="Hier etwas eingeben" onkeypress="callCreateTable(this.value)" autofocus
+            <input type="text" name="searchTf" id="searchTf" placeholder="Was suchst du??" onkeypress="callCreateTable(this.value)" autofocus
                    autocomplete="off">
-            <input type="submit" name="searchBut" id="searchBut" value="Suchen">
+
         </form>
 </div>
 
 
 
 
-<?php
-
-
-$contoller = new Controller();
-
-if (isset($_GET["searchTf"]))
-{
-    echo "<div class='main col-9'>".$contoller->createTable($_GET["searchTf"])."</div>";  //The generated table
-    //$contoller->readTextFile();
-}
-
-
-?>
 <div id="tableDiv"></div>
 
 </body>

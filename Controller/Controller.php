@@ -163,6 +163,8 @@ class Controller
         return $database;
     }
 
+
+    //Only for testing - Delete later
     function testFunction($var)
     {
         echo "This is a test $var";
