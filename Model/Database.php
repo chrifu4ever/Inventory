@@ -13,14 +13,14 @@ class Database
 {
 
 
-    function showProduct($object)
+    function showProdukt($object)
     {
         if ($object != "")
         {
-            return $this->getSQLOrder("SELECT Product.productName, Product.productID, Rooms.roomName,  Rooms.roomID, Cupboard.cupboardName, Cupboard.cupboardID FROM Product
-                      JOIN Cupboard ON Product.cupboardID=Cupboard.cupboardID
-                      JOIN Rooms ON Cupboard.roomID=Rooms.roomID
-                      WHERE Product.productName LIKE '%$object%' OR Cupboard.cupboardName LIKE '%$object%' OR Rooms.roomName LIKE '%$object%'");
+            return $this->getSQLOrder("SELECT Produkt.produktName, Produkt.produktID, Zimmer.zimmerName,  Zimmer.zimmerID, Schraenke.schrankName, Schraenke.schrankID FROM Produkt
+                      JOIN Schraenke ON Produkt.schrankID=Schraenke.schrankID
+                      JOIN Zimmer ON Schraenke.zimmerID=Zimmer.zimmerID
+                      WHERE Produkt.produktName LIKE '%$object%' OR Schraenke.schrankName LIKE '%$object%' OR Zimmer.zimmerName LIKE '%$object%'");
 
 
         }
@@ -34,21 +34,21 @@ class Database
     }
 
 
-    function createNewProduct($object, $cupboard)
+    function createNewProdukt($object, $Schraenke)
     {
-        return $this->getSQLOrder("INSERT INTO Product(productName, cupboardID) VALUES ('$object',$cupboard)");
+        return $this->getSQLOrder("INSERT INTO Produkt(produktName, schrankID) VALUES ('$object',$Schraenke)");
 
 
 
     }
 
 
-    function deleteProductInDB($productID)
+    function deleteProduktInDB($produktID)
     {
-        //$a = $this->showProduct($product)->fetch_object();
-        echo "DELETE FROM Product WHERE productName = '$productID'";
+        //$a = $this->showProdukt($Produkt)->fetch_object();
+        echo "DELETE FROM Produkt WHERE produktName = '$produktID'";
 
-        return $this->getSQLOrder( "DELETE FROM Product WHERE productID = '$productID'");
+        return $this->getSQLOrder( "DELETE FROM Produkt WHERE produktID = '$produktID'");
 
 
     }
@@ -58,10 +58,10 @@ class Database
         switch ($a)
         {
             case 1:
-                return $this->getSQLOrder("SELECT cupboardID, cupboardName FROM Cupboard");
+                return $this->getSQLOrder("SELECT schrankID, schrankName FROM Schraenke");
                 break;
             case 2:
-                return $this->getSQLOrder("SELECT roomID, roomName FROM Rooms");
+                return $this->getSQLOrder("SELECT zimmerID, zimmerName FROM Zimmer");
                 break;
         }
     }

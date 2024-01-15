@@ -36,7 +36,7 @@ class Controller
         {
             //$database = new Database();
 
-            $databaseElement = $this->init()->showProduct($result);
+            $databaseElement = $this->init()->showProdukt($result);
             $countRows = 0;
             //Creates the Head of the Table
             $tableHead = "
