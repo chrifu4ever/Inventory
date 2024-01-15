@@ -49,8 +49,7 @@ class Controller
         </tr>
         ";
 
-            $tableRows = "";
-
+           
 
 
             //Creates the Table Rows as long as there are DB Entries
@@ -59,11 +58,11 @@ class Controller
 
 
                 $countRows++;
-                $tableRows .= "<tr id='tr_$row->productID'>
-                <td id='roomID_$row->roomID'>$row->roomName</td>
-                <td id='cupboardID_$row->cupboardID'>$row->cupboardName</td>
-                <td id='productID_$row->productID'>$row->productName</td>
-                <td><img id='$row->productID' src='View/pics/delete.png' onclick='callDeleteProduct(this.id)'></td>
+                $tableRows .= "<tr id='tr_$row->produktID'>
+                <td id='roomID_$row->zimmerID'>$row->zimmerName</td>
+                <td id='cupboardID_$row->schrankID'>$row->schrankName</td>
+                <td id='produktID_$row->produktID'>$row->produktName</td>
+                <td><img id='$row->produktID' src='View/pics/delete.png' onclick='callDeleteProduct(this.id)'></td>
                 <td><img src='View/pics/edit.png'>
                 </tr>
                 ";
@@ -157,19 +156,11 @@ class Controller
 
     function init()
     {
-
-
         $database = new Database();
         return $database;
     }
 
 
-    //Only for testing - Delete later
-    function testFunction($var)
-    {
-        echo "This is a test $var";
-
-    }
 
 
 
